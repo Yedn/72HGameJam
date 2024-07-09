@@ -56,12 +56,15 @@ public class TracerManager
 
     private bool IsChoen = false;
     private bool AvoidLeftCheck = false;
+    private bool moved = false;
+    //private Rigidbody2D rb;
 
     private void Start()
     {
         m_cam = Camera.main;
         //bird.DesActivateRb();
         bird.ActivateRb();
+        //rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -80,6 +83,7 @@ public class TracerManager
                 m_isDragging = false;
                 OnDragEnd();
                 AvoidLeftCheck = false;
+                moved = true;
             }
 
             if (m_isDragging)
@@ -87,6 +91,7 @@ public class TracerManager
                 OnDrag();
             }
         }
+        CheckTurn();
     }
 
     public void SetChosen(bool B)
@@ -134,5 +139,18 @@ public class TracerManager
         // Òþ²Ø¹ì¼£
         trajectory.Hide();
     }
+
+
+    public void CheckTurn()
+    {
+        bool isStandBy = bird.GetComponent<Rigidbody2D>().velocity.magnitude < 0.01f;
+        if(isStandBy && moved)
+        {
+            GameManager.teamlist[0] = !GameManager.teamlist[0];
+            GameManager.teamlist[1] = !GameManager.teamlist[1];
+            moved = false;
+        }
+    }
+
 }
 

@@ -18,11 +18,12 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
 
     // Start is called before the first frame update
-    static public bool[] teamlist = new bool[2]; //0代表A,1代表B
-    public TeamAManager[] teammanager = new TeamAManager[2];
+    [HideInInspector] static public bool[] teamlist = new bool[2]; //0代表A,1代表B
+    //public TeamManager[] teammanager = new TeamManager[2];
+    public GameObject[] TeamList;
 
-    private TeamAManager TeamAScript;
-    private TeamAManager TeamBScript;
+    private TeamManager TeamAScript;
+    private TeamManager TeamBScript;
 
     private BallCollide ballscript;
 
@@ -30,9 +31,10 @@ public class GameManager : MonoBehaviour
     {
         teamlist[0]= true;
         teamlist[1]= false;
-        TeamAScript = GameObject.FindGameObjectWithTag("TeamA").GetComponent<TeamAManager>();
-        TeamBScript = GameObject.FindGameObjectWithTag("TeamB").GetComponent<TeamAManager>();
-        
+        TeamAScript = TeamList[0].GetComponent<TeamManager>();
+        TeamBScript = TeamList[1].GetComponent<TeamManager>();
+        TeamAScript.isTurn = true;
+        TeamBScript.isTurn = false;
     }
 
     private void OnGUI()
@@ -68,8 +70,22 @@ public class GameManager : MonoBehaviour
             CurrentState = GameState.Game;//之后加上TeamAB成员初始位置的列表,transform回去
         }
     }
+
+    void checkBool()
+    {
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("TeamA" + teamlist[0]);
+            Debug.Log("TeamB" + teamlist[1]);
+
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        TeamAScript.isTurn = teamlist[0];
+        TeamBScript.isTurn = teamlist[1];
+        checkBool();
     }
 }

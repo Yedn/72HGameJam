@@ -8,10 +8,12 @@ public class ClickDetector : MonoBehaviour
     private bool isChosen = false;
     private GameObject eff;
     private string Corename;
+    private string Fcorename;
 
     private void Awake()
     {
-        Corename = transform.parent.name;
+        Fcorename = transform.parent.name;
+        Corename = transform.parent.parent.name;
     }
 
     void Update()
@@ -36,7 +38,9 @@ public class ClickDetector : MonoBehaviour
             if (hit.collider != null)
             {
                 //Debug.Log("in");
-                if (hit.collider.transform.parent.name == Corename)
+                if (hit.collider.transform.parent.parent.name == Corename &&
+                    hit.collider.transform.parent.name == Fcorename
+                    )
                 {
                     Debug.Log("你点击了物体: " + hit.collider.name + transform.parent.name);
                     // 在这里添加你希望执行的代码  

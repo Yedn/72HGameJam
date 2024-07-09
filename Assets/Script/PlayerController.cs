@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
             //if (Input.GetKeyDown(KeyCode.E) && isChosen) Debug.Log("from PlayyerCon");
             //else Debug.Log("from PlayyerCon turfal");
-            if (Input.GetKeyDown(KeyCode.Mouse1)) UnChoseState();
+            //if (Input.GetKeyDown(KeyCode.Mouse1)) UnChoseState();
         }
         else
         {

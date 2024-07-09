@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - edge
-  - Ball
-  - TeamA
-  - TeamB
   - TurnSystem
+  - edge
+  - TeamB
+  - TeamA
   layers:
   - Default
   - TransparentFX
@@ -16,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - BackGround
+  - ForeGround
+  - Player
+  - HitBox
   - 
   - 
   - 
@@ -45,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 1943498821
+    locked: 0
+  - name: ForeGround
+    uniqueID: 839462999
+    locked: 0
+  - name: Player
+    uniqueID: 949123469
     locked: 0

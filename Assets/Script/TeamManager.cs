@@ -7,12 +7,15 @@ public class TeamManager : MonoBehaviour
     public GameObject[] PlayerList;
     //[HideInInspector] public bool[] ChosePlayer = new bool[5];
 
-    private bool isTurn = false;
+    public bool isTurn = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        foreach (GameObject player in PlayerList)
+        {
+            player.GetComponent<PlayerController>().SetTurn(isTurn);
+        }
     }
 
     // Update is called once per frame
@@ -26,6 +29,34 @@ public class TeamManager : MonoBehaviour
                 player.GetComponent<PlayerController>().SetTurn(isTurn);
             }
         }
+        CheckMulti();
 
     }
+
+    void CheckMulti()
+    {
+        int count = 0;
+        bool muti = false;
+        foreach (GameObject player in PlayerList)
+        {
+           if( player.GetComponent<PlayerController>().getChosenState())
+            {
+                count++;
+                if (count > 1)
+                {
+                    muti = true;
+                    break;
+                }
+            }
+        }
+        if (muti)
+        {
+
+            foreach (GameObject player in PlayerList)
+            {
+                player.GetComponent<PlayerController>().UnChoseState();
+            }
+        }
+    }
+
 }

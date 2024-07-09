@@ -29,7 +29,7 @@ public class ClickDetector : MonoBehaviour
 
     private void Chosen()
     {
-        if (Input.GetMouseButtonDown(0)) // 检测鼠标左键是否被按下  
+        if (Input.GetMouseButtonDown(1)) 
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             //Debug.Log("out");
@@ -41,19 +41,16 @@ public class ClickDetector : MonoBehaviour
                     Debug.Log("你点击了物体: " + hit.collider.name + transform.parent.name);
                     // 在这里添加你希望执行的代码  
                     eff = hit.collider.gameObject.transform.Find("NormalChosenEffect").gameObject;
-                    //if (eff.activeSelf)
-                    //{
-                    //    eff.SetActive(false);
-                    //    isChosen = false;
-                    //}
-                    //else
-                    //{
-                    //    eff.SetActive(true);
-                    //    isChosen = true;
-                    //}
                     isChosen = true;
                     eff.SetActive(true);
                 }
+            }
+            else
+            {
+                //Debug.Log("你没点击了物体: " + hit.collider.name + transform.parent.name);
+                eff = transform.Find("NormalChosenEffect").gameObject;
+                isChosen = false;
+                eff.SetActive(false);
             }
         }
     }

@@ -4,8 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - additioncamera
   - edge
+  - Ball
+  - TeamA
+  - TeamB
+  - TurnSystem
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class control : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     SpriteRenderer sprite;
 

@@ -1,64 +1,72 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        Menu,
+        Game,
+        Esc,
+        Over
+    }
+
+    public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
+
     // Start is called before the first frame update
-    public control players;
-    public Trajectory trajectory;
-    private Camera cam;
-    public float speedFactor = 3.0f;//力的大小
-    private bool isDragging = false;
-    private Vector2 startpoint;
-    private Vector2 endpoint;
-    private float distance;
-    private Vector2 direction;
-    private Vector2 PushSpeed;
+    public bool[] teamlist = new bool[2]; //0代表A,1代表B
+    public TeamAManager[] teammanager = new TeamAManager[2];
+
+    private TeamAManager TeamAScript;
+    private TeamAManager TeamBScript;
     void Start()
     {
-        cam = Camera.main;
-        players.DesActivateRigid();
+        teamlist[0]= true;
+        teamlist[1]= false;
+        TeamAScript = GameObject.FindGameObjectWithTag("TeamA").GetComponent<TeamAManager>();
+        TeamBScript = GameObject.FindGameObjectWithTag("TeamB").GetComponent<TeamAManager>();
     }
 
+    private void OnGUI()
+    {
+        if (CurrentState == GameState.Menu)
+        {
+            Debug.Log("IN MENU");
+        }
+        else if (CurrentState == GameState.Over)
+        {
+            Debug.Log("HAS OVERED");
+        }
+        else if (CurrentState == GameState.Esc)
+        {
+            Debug.Log("ESC");
+        }
+    }
+
+    private void GameStartButton(int teamNum)
+    {
+        if (GUI.Button(new Rect(50,30,100,20),"START"))
+        {
+            CurrentState = GameState.Game;
+        }
+    }
+
+    private void GameRestartButton(int teamNum)
+    {
+        if (GUI.Button(new Rect(50, 30, 100, 20), "RESTART"))
+        {
+            teamlist[0] = true;
+            teamlist[1]=false;
+            CurrentState = GameState.Game;//之后加上TeamAB成员初始位置的列表,transform回去
+        }
+    }
     // Update is called once per frame
-    private void OnDragStart()
-    {
-        players.DesActivateRigid();
-        startpoint=cam.ScreenToWorldPoint(Input.mousePosition);
-        trajectory.Show();
-    }
-    private void OnDragEnd()
-    {
-        players.ActivateRigid();
-        players.Push(PushSpeed);
-        trajectory.Hide();
-    }
-
-    private void OnDrag()
-    {
-        endpoint = cam.ScreenToWorldPoint(Input.mousePosition);
-        distance = Vector2.Distance(startpoint,endpoint);
-        direction = (startpoint - endpoint).normalized;
-        PushSpeed = direction*distance*speedFactor;
-        trajectory.UpdateDots(players.pos, PushSpeed);
-    }
-
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(CurrentState==GameState.Game)
         {
-            isDragging = true;
-            OnDragStart();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            isDragging = false;
-            OnDragEnd();
-        }
-        if (isDragging)
-        {
-            OnDrag();
+
         }
     }
 }

@@ -39,4 +39,7 @@ public class Bird : MonoBehaviour
         rb.angularVelocity = 0f;
         rb.isKinematic = true;
     }
+
+
+
 }

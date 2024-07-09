@@ -10,7 +10,7 @@ public class TeamManager : MonoBehaviour
     public bool isTurn = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         foreach (GameObject player in PlayerList)
         {
@@ -21,14 +21,15 @@ public class TeamManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    isTurn = !isTurn;
+
+        foreach (GameObject player in PlayerList)
         {
-            isTurn = !isTurn;
-            foreach (GameObject player in PlayerList)
-            {
-                player.GetComponent<PlayerController>().SetTurn(isTurn);
-            }
+            player.GetComponent<PlayerController>().SetTurn(isTurn);
         }
+        //}
         CheckMulti();
 
     }

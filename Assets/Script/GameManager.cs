@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
+
+    
+
     public enum GameState
     {
         Menu,
@@ -15,17 +18,21 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
 
     // Start is called before the first frame update
-    public bool[] teamlist = new bool[2]; //0代表A,1代表B
+    static public bool[] teamlist = new bool[2]; //0代表A,1代表B
     public TeamAManager[] teammanager = new TeamAManager[2];
 
     private TeamAManager TeamAScript;
     private TeamAManager TeamBScript;
+
+    private BallCollide ballscript;
+
     void Start()
     {
         teamlist[0]= true;
         teamlist[1]= false;
         TeamAScript = GameObject.FindGameObjectWithTag("TeamA").GetComponent<TeamAManager>();
         TeamBScript = GameObject.FindGameObjectWithTag("TeamB").GetComponent<TeamAManager>();
+        
     }
 
     private void OnGUI()
@@ -64,9 +71,5 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CurrentState==GameState.Game)
-        {
-
-        }
     }
 }

@@ -4,65 +4,86 @@ using UnityEngine;
 
 public class Trajectory : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /// <summary>
+    /// 预测点的数量
+    /// </summary>
+    [SerializeField] private int m_dotsNum = 20;
+    /// <summary>
+    /// 点物体的父节点
+    /// </summary>
+    [SerializeField] private GameObject m_dotsParent;
+    /// <summary>
+    /// 点预设
+    /// </summary>
+    [SerializeField] private GameObject m_dotsPrefab;
+    /// <summary>
+    /// 点间距
+    /// </summary>
+    [SerializeField] private float m_dotSpacing = 0.01f;
+    /// <summary>
+    /// 点的最小缩放
+    /// </summary>
+    [SerializeField] [Range(0.01f, 0.3f)] private float m_dotMinScale = 0.1f;
+    /// <summary>
+    /// 点的最大缩放
+    /// </summary>
+    [SerializeField] [Range(0.3f, 1f)] private float m_dotMaxScale = 1f;
 
-    public int dotsNum = 10; //预测点的数量
-    public GameObject dotsParent;
-    public GameObject dotsPrefab;
-    public float dotsSpacing = 0.02f; // 点间间距
-    [Range(0.01f,0.3f)] public float dotMinSize  = 0.1f;
-    [Range(0.3f, 1f)] public float dotMaxSize = 1f;
 
-    private Transform[] dotsList;
-    private Vector2 pos;
-    private float timeStamp;
+    private Transform[] m_dotsList;
+    private Vector2 m_pos;
+    private float m_timeStamp;
 
-    void Start()
+    private void Start()
     {
         Hide();
         PrepareDots();
     }
 
-    public void Show()
-    {
-        dotsParent.SetActive(true);
-    }
-
-    public void Hide()
-    {
-        dotsParent.SetActive(false);
-    }
-
+    /// <summary>
+    /// 准备轨迹点
+    /// </summary>
     private void PrepareDots()
     {
-        dotsList = new Transform[dotsNum];
-        dotsPrefab.transform.localScale = Vector3.one*dotMaxSize;
-        float size = dotMaxSize;
-        float sizeFactor = size / dotsNum;
+        m_dotsList = new Transform[m_dotsNum];
+        m_dotsPrefab.transform.localScale = Vector3.one * m_dotMaxScale;
+        float scale = m_dotMaxScale;
+        float scaleFactor = scale / m_dotsNum;
 
-        for (int i=0;i<dotsNum; i++)
+        for (int i = 0; i < m_dotsNum; ++i)
         {
-            var dot = Instantiate(dotsPrefab).transform;
-            dot.parent = dotsParent.transform;
-            dot.localScale = Vector3.one * size;
-            if (size >dotMinSize)
-            {
-                size -= sizeFactor;
-            }
-            dotsList[i] = dot;
+            var dot = Instantiate(m_dotsPrefab).transform;
+            dot.parent = m_dotsParent.transform;
+            dot.localScale = Vector3.one * scale;
+            if (scale > m_dotMinScale)
+                scale -= scaleFactor;
+            m_dotsList[i] = dot;
         }
     }
 
-    public void UpdateDots (Vector2 birdPos, Vector2 pushSpeed)
+    public void UpdateDots(Vector2 birdPos, Vector2 pushSpeed)
     {
-        timeStamp = dotsSpacing;
-        for (int i=0;i<dotsNum; i++) 
+        m_timeStamp = m_dotSpacing;
+
+        for (int i = 0; i < m_dotsNum; ++i)
         {
-            pos.x = birdPos.x + pushSpeed.x*timeStamp;
-            pos.y = birdPos.y + pushSpeed.y * timeStamp;
-            dotsList[i].position = pos;
-            timeStamp += dotsSpacing;
+            m_pos.x = birdPos.x + pushSpeed.x * m_timeStamp;
+            m_pos.y = (birdPos.y + pushSpeed.y * m_timeStamp) - 0.5f * Physics2D.gravity.magnitude * m_timeStamp * m_timeStamp;
+            m_dotsList[i].position = m_pos;
+            m_timeStamp += m_dotSpacing;
         }
     }
-    // Update is called once per frame
+
+    public void Show()
+    {
+        m_dotsParent.SetActive(true);
+    }
+
+    /// <summary>
+    /// 隐藏预测轨迹
+    /// </summary>
+    public void Hide()
+    {
+        m_dotsParent.SetActive(false);
+    }
 }

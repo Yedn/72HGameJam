@@ -1,5 +1,7 @@
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CamMove : MonoBehaviour
 {
@@ -52,7 +54,23 @@ public class CamMove : MonoBehaviour
             camFollowPos.x = Mathf.Max(camFollowPos.x, MinPos.x);
             camFollowPos.y = Mathf.Min(camFollowPos.y, MaxPos.y);
             camFollowPos.y = Mathf.Max(camFollowPos.y, MinPos.y);
-            myCamera.transform.position= camFollowPos;//刷新摄像机位置
+            myCamera.transform.position = camFollowPos;//刷新摄像机位置
         }
     }
+
+    public void ResetPos()
+    {
+        Debug.Log("CamReset");
+        //StartCoroutine(holdon());
+        edgeScrolling = false;
+        camFollowPos.x = camFollowPos.y = 0;
+        Invoke("holdon", 1000f * Time.deltaTime);
+        edgeScrolling = true;
+
+    }
+    void holdon()
+    {
+
+    }
+    
 }

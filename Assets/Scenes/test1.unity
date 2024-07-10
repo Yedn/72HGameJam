@@ -746,7 +746,6 @@ GameObject:
   - component: {fileID: 1000178740}
   - component: {fileID: 1000178739}
   - component: {fileID: 1000178738}
-  - component: {fileID: 1000178737}
   - component: {fileID: 1000178736}
   m_Layer: 8
   m_Name: Circle
@@ -764,9 +763,9 @@ Transform:
   m_GameObject: {fileID: 1000178734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.018, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1226945404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -783,18 +782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prepos: {x: 0, y: 0}
---- !u!114 &1000178737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000178734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50f8fd5a6ee59b44bd981e9dcd7d3cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1000178738
 Rigidbody2D:
   serializedVersion: 4

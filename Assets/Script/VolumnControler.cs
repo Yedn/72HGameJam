@@ -11,7 +11,7 @@ public class VolumnControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+      //  DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -19,5 +19,9 @@ public class VolumnControler : MonoBehaviour
     {
       BGMAudio.volume = volumnslider.value;  
     }
+
+ //   public void UpDateGameObject()  {
+  //    GameObject audioSlider = GameObject.FindGameObjectWithTag("gameSettingUI").transform.Get
+   // }
 
 }

@@ -12,6 +12,7 @@ TagManager:
   - ADoor
   - BDoor
   - CamMove
+  - GameSettingUI
   layers:
   - Default
   - TransparentFX

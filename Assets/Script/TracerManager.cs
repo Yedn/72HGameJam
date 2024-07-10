@@ -72,7 +72,7 @@ public class TracerManager : MonoBehaviour
         if (IsChoen)
         {
             // 检测鼠标/手指行为
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && GameManager.canAction)
             {
                 m_isDragging = true;
                 OnDragStart();

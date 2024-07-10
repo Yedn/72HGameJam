@@ -180,5 +180,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GameResult.transform.Find("goal").gameObject.SetActive(false);
     }
-
+    public void ShutRetrun()
+    {
+        CurrentState = GameState.Over;
+        Time.timeScale = 1f;
+    }
 }

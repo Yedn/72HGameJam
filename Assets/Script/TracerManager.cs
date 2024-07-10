@@ -8,6 +8,9 @@ using UnityEngine;
 /// </summary>
 public class TracerManager : MonoBehaviour
 {
+
+    public int maxforce=1;//
+
     /// <summary>
     /// Äñ
     /// </summary>
@@ -121,10 +124,11 @@ public class TracerManager : MonoBehaviour
     /// </summary>
     private void OnDrag()
     {
+        maxforce = AForce.randomforce;
         m_endPoint = m_cam.ScreenToWorldPoint(Input.mousePosition);
         m_distance = Vector2.Distance(m_startPoint, m_endPoint);
         m_direction = (m_startPoint - m_endPoint).normalized;
-        m_distance = Mathf.Min(m_distance, 6.0f);
+        m_distance = Mathf.Min(m_distance, maxforce);
         //Debug.Log(m_distance);
 
         m_pushSpeed = m_direction * m_distance * m_speedFactor;
@@ -138,6 +142,7 @@ public class TracerManager : MonoBehaviour
     private void OnDragEnd()
     {
         bird.ActivateRb();
+        Debug.Log("Trace:" + bird.GetComponent<Rigidbody2D>().isKinematic);
         bird.Push(m_pushSpeed);
         // Òþ²Ø¹ì¼£
         trajectory.Hide();

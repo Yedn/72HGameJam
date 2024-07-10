@@ -1199,12 +1199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2a332ec7c9f8c459420581bae2fcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeSize: 1
+  edgeSize: 0
   moveAmount: 10
   MinPos: {x: -6.5, y: -3}
   MaxPos: {x: 6.5, y: 3}
   myCamera: {fileID: 2089603783}
-  edgeScrolling: 1
 --- !u!4 &465595264
 Transform:
   m_ObjectHideFlags: 0

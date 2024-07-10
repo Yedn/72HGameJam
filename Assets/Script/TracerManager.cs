@@ -80,11 +80,9 @@ public class TracerManager : MonoBehaviour
                 m_isDragging = true;
                 OnDragStart();
                 AvoidLeftCheck = true;
-                GameManager.isRelease = false;
             }
             if (Input.GetMouseButtonUp(0) && AvoidLeftCheck)
             {
-                GameManager.isRelease = true;
                 m_isDragging = false;
                 OnDragEnd();
                 AvoidLeftCheck = false;

@@ -6,7 +6,7 @@ public class TeamManager : MonoBehaviour
 {
     public GameObject[] PlayerList;
     //[HideInInspector] public bool[] ChosePlayer = new bool[5];
-
+    
     public bool isTurn = false;
 
     // Start is called before the first frame update
@@ -72,6 +72,15 @@ public class TeamManager : MonoBehaviour
             {
                 player.GetComponent<PlayerController>().UnChoseState();
             }
+        }
+    }
+
+    public void ResetPlayerPos()
+    {
+        foreach(GameObject player in PlayerList)
+        {
+            player.GetComponent<PlayerController>().ResetCorePos(player.transform.position);
+            player.SetActive(true);
         }
     }
 

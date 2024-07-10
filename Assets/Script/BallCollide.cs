@@ -27,7 +27,7 @@ public class BallCollide : MonoBehaviour
         Rigidbody2D rigid_collider = Collider.GetComponent<Rigidbody2D>();
         if (Collider.CompareTag("ADoor") || Collider.CompareTag("BDoor"))
         {
-            transform.position = prepos;
+            ResetBallPos();
             rigid_ball.velocity = new Vector2(0f, 0f);
             Debug.Log("Çò½øÁË");
             if (Collider.tag == "ADoor")
@@ -48,6 +48,10 @@ public class BallCollide : MonoBehaviour
         
     }
 
+    public void ResetBallPos()
+    {
+        transform.position = prepos;
+    }
 
 
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallCollide : MonoBehaviour
 {   
     private Rigidbody2D rigid_ball;
-
+    static public bool isgoal = false;
     static public int Ascare = 0;
     static public int Bscare = 0;
 
@@ -29,7 +29,7 @@ public class BallCollide : MonoBehaviour
         {
             ResetBallPos();
             rigid_ball.velocity = new Vector2(0f, 0f);
-            Debug.Log("Çò½øÁË");
+            isgoal = true;
             if (Collider.tag == "ADoor")
             {
                 Bscare++;

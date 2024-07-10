@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     static public bool canAction = true;
-
+    public GameObject GameResult;
     public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
 
     // Start is called before the first frame update
@@ -96,11 +97,13 @@ public class GameManager : MonoBehaviour
 
                 if (BallCollide.Ascare > BallCollide.Bscare)
                 {
-                    Debug.Log("A win");
+                    GameResult.transform.Find("Awin").gameObject.SetActive(true);
+                    GameResult.transform.Find("Blose").gameObject.SetActive(true);
                 }
                 else
                 {
-                    Debug.Log("B win");
+                    GameResult.transform.Find("Bwin").gameObject.SetActive(true);
+                    GameResult.transform.Find("Alose").gameObject.SetActive(true);
                 }
                 CurrentState = GameState.Over;
                 BallCollide.Ascare = BallCollide.Bscare = 0;
@@ -108,13 +111,15 @@ public class GameManager : MonoBehaviour
 
             if (TeamList[0].GetComponent<TeamManager>().NotSurvive())
             {
-                Debug.Log("B win");
+                GameResult.transform.Find("Bwin").gameObject.SetActive(true);
+                GameResult.transform.Find("Alose").gameObject.SetActive(true);
                 CurrentState = GameState.Over;
                 BallCollide.Ascare = BallCollide.Bscare = 0;
             }
             else if (TeamList[1].GetComponent<TeamManager>().NotSurvive())
             {
-                Debug.Log("A win");
+                GameResult.transform.Find("Awin").gameObject.SetActive(true);
+                GameResult.transform.Find("Blose").gameObject.SetActive(true);
                 CurrentState = GameState.Over;
                 BallCollide.Ascare = BallCollide.Bscare = 0;
             }
@@ -149,6 +154,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -156,5 +163,19 @@ public class GameManager : MonoBehaviour
         TeamBScript.isTurn = teamlist[1];
         checkBool();
         overgame();
+
+        if (BallCollide.isgoal)
+        {
+            GameResult.transform.Find("goal").gameObject.SetActive(true);
+            BallCollide.isgoal = false;
+            StartCoroutine(UnShowGoal());
+        }
     }
+
+    IEnumerator UnShowGoal()
+    {
+        yield return new WaitForSeconds(2f);
+        GameResult.transform.Find("goal").gameObject.SetActive(false);
+    }
+
 }

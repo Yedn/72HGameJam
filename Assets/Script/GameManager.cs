@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
         Over
     }
 
+    static public bool canAction = true;
+
     public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
 
     // Start is called before the first frame update

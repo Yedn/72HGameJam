@@ -9,6 +9,7 @@ public class ClickDetector : MonoBehaviour
     private GameObject eff;
     private string Corename;
     private string Fcorename;
+    private bool canUnSelect = true;
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class ClickDetector : MonoBehaviour
 
     private void Chosen()
     {
-        if (Input.GetMouseButtonDown(1)) 
+        if (Input.GetMouseButtonDown(1) && canUnSelect && GameManager.canAction)  
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             //Debug.Log("out");
@@ -69,4 +70,10 @@ public class ClickDetector : MonoBehaviour
     {
         isTurn = tt;
     }
+     
+    public void SetcanUnSelect(bool tt)
+    {
+        canUnSelect = tt;
+    }
+
 }

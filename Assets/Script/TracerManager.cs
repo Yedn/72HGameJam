@@ -31,7 +31,7 @@ public class TracerManager : MonoBehaviour
     /// <summary>
     /// 是否拉动中
     /// </summary>
-    private bool m_isDragging = false;
+    [HideInInspector] private bool m_isDragging = false;
     /// <summary>
     /// 手指的起始点
     /// </summary>
@@ -84,10 +84,13 @@ public class TracerManager : MonoBehaviour
                 OnDragEnd();
                 AvoidLeftCheck = false;
                 moved = true;
+                //bird.GetComponent<ClickDetector>().SetcanSelect(true);
             }
 
             if (m_isDragging)
             {
+                bird.GetComponent<ClickDetector>().SetcanUnSelect(false);
+                GameManager.canAction = false;
                 OnDrag();
             }
         }
@@ -149,6 +152,8 @@ public class TracerManager : MonoBehaviour
         {
             GameManager.teamlist[0] = !GameManager.teamlist[0];
             GameManager.teamlist[1] = !GameManager.teamlist[1];
+            bird.GetComponent<ClickDetector>().SetcanUnSelect(true);
+            GameManager.canAction = true;
             moved = false;
             OutGate?.Invoke();
         }

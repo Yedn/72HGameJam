@@ -9,6 +9,8 @@ TagManager:
   - TeamB
   - TeamA
   - Ball
+  - ADoor
+  - BDoor
   layers:
   - Default
   - TransparentFX

@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         }
         else if (CurrentState == GameState.Over)
         {
+            Time.timeScale = 0f;
             Debug.Log("HAS OVERED");
         }
         else if (CurrentState == GameState.Esc)

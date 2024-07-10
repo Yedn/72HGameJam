@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
         isTurn = st;
     }
 
-
+    public void ResetCorePos(Vector2 vector)
+    {
+        Core.transform.position = new Vector2(vector.x, vector.y);
+        Core.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        Core.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+        Tracer.GetComponent<TracerManager>().OutGate -= Core.GetComponent<Bird>().desPlayer;
+    }
 
 }

@@ -55,7 +55,7 @@ public class Bird : MonoBehaviour
         }
     }
 
-    private void desPlayer()
+    public void desPlayer()
     {
         transform.parent.gameObject.SetActive(false);
     }

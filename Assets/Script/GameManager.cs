@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         TeamBScript = TeamList[1].GetComponent<TeamManager>();
         TeamAScript.isTurn = true;
         TeamBScript.isTurn = false;
-
+        ballscript = transform.Find("Ball/Circle").GetComponent<BallCollide>();
         Astartpos = new Vector2[TeamAScript.PlayerList.Length];
         Bstartpos = new Vector2[TeamAScript.PlayerList.Length];
 
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private bool isOver = false;
+
     private void OnGUI()
     {
         if (CurrentState == GameState.Menu)
@@ -58,12 +60,12 @@ public class GameManager : MonoBehaviour
         }
         else if (CurrentState == GameState.Over)
         {
-            for (int i=0;i<TeamAScript.PlayerList.Length;i++)
-            {
-                TeamAScript.PlayerList[i].transform.position=new Vector2(Astartpos[i].x, Astartpos[i].y);
-                TeamBScript.PlayerList[i].transform.position = new Vector2(Bstartpos[i].x, Bstartpos[i].y);
-            }
-
+            isOver = true;
+            TeamAScript.ResetPlayerPos();
+            TeamBScript.ResetPlayerPos();
+            ballscript.ResetBallPos();
+            BallCollide.Ascare = BallCollide.Bscare = 0;
+            CurrentState = GameState.Game;
             //.localPosition = Vector3.MoveTowards(TeamAScript.PlayerList[i].transform.position, Astartpos[i],999);
             //Debug.Log("HAS OVERED");
             //Time.timeScale = 0f;
@@ -143,5 +145,16 @@ public class GameManager : MonoBehaviour
         TeamBScript.isTurn = teamlist[1];
         checkBool();
         overgame();
+        //if(isOver)
+        //{
+        //    for (int i = 0; i < TeamAScript.PlayerList.Length; i++)
+        //    {
+        //        TeamAScript.PlayerList[i].transform.position = new Vector2(Astartpos[i].x, Astartpos[i].y);
+        //        TeamBScript.PlayerList[i].transform.position = new Vector2(Bstartpos[i].x, Bstartpos[i].y);
+        //        Debug.Log(TeamBScript.PlayerList[i].transform.position.ToString() + "Orijin");
+        //        Debug.Log(Bstartpos[i].ToString() + "set");
+        //    }
+        //    //isOver = false;
+        //}
     }
 }

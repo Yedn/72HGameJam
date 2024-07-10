@@ -75,4 +75,13 @@ public class TeamManager : MonoBehaviour
         }
     }
 
+    public void ResetPlayerPos()
+    {
+        foreach(GameObject player in PlayerList)
+        {
+            player.GetComponent<PlayerController>().ResetCorePos(player.transform.position);
+            player.SetActive(true);
+        }
+    }
+
 }

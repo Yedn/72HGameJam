@@ -11,6 +11,7 @@ TagManager:
   - Ball
   - ADoor
   - BDoor
+  - CamMove
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 949123469
+    locked: 0
+  - name: Deathgate
+    uniqueID: 1817345089
     locked: 0

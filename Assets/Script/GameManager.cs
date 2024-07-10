@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     //public TeamManager[] teammanager = new TeamManager[2];
     public GameObject[] TeamList;
 
-    
+    public CamMove Cam;
 
     private TeamManager TeamAScript;
     private TeamManager TeamBScript;
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         TeamAScript.isTurn = true;
         TeamBScript.isTurn = false;
         ballscript = transform.Find("Ball/Circle").GetComponent<BallCollide>();
+        Cam = GameObject.FindGameObjectWithTag("CamMove").GetComponent<CamMove>();
 
         Astartpos = new Vector2[TeamAScript.PlayerList.Length];
         Bstartpos = new Vector2[TeamAScript.PlayerList.Length];

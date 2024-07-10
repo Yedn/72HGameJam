@@ -22,6 +22,8 @@ public class TracerManager : MonoBehaviour
     /// </summary>
     private Camera m_cam;
 
+    public int maxforce=6;
+
     /// <summary>
     /// ¡¶¥Û–°
     /// </summary>
@@ -121,10 +123,13 @@ public class TracerManager : MonoBehaviour
     /// </summary>
     private void OnDrag()
     {
+
+        maxforce = MaxForce.randomforce;
         m_endPoint = m_cam.ScreenToWorldPoint(Input.mousePosition);
         m_distance = Vector2.Distance(m_startPoint, m_endPoint);
         m_direction = (m_startPoint - m_endPoint).normalized;
-        m_distance = Mathf.Min(m_distance, 6.0f);
+        m_distance = Mathf.Min(m_distance, maxforce);
+        Debug.Log(maxforce);
         //Debug.Log(m_distance);
 
         m_pushSpeed = m_direction * m_distance * m_speedFactor;

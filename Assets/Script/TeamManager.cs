@@ -18,6 +18,11 @@ public class TeamManager : MonoBehaviour
         }
     }
 
+    public bool NotSurvive()
+    {
+        return (PlayerList.Length == 0);
+    }
+
     // Update is called once per frame
     void Update()
     {

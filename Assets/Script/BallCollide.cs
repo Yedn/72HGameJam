@@ -7,13 +7,16 @@ public class BallCollide : MonoBehaviour
 {   
     private Rigidbody2D rigid_ball;
 
-    public int Ascare = 0;
-    public int Bscare = 0;
+    static public int Ascare = 0;
+    static public int Bscare = 0;
+
+    public Vector2 prepos = new Vector2(0.0f,0.0f);
 
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.position = new Vector2(0, 0);
+        this.transform.position = prepos;
+        
         rigid_ball = this.GetComponent<Rigidbody2D>();
     }
 
@@ -23,15 +26,15 @@ public class BallCollide : MonoBehaviour
         Rigidbody2D rigid_collider = Collider.GetComponent<Rigidbody2D>();
         if (Collider.tag == "ADoor" || Collider.tag == "BDoor")
         {
-            Destroy(this);
+            this.transform.position= prepos;
             if (Collider.tag == "ADoor")
             {
-                
+                Bscare++;
             }
-        }
-        else
-        {
-            rigid_ball.AddForce(rigid_collider.velocity * 4 / 3, ForceMode2D.Impulse);
+            else
+            {
+                Ascare++;
+            }
         }
     }
 

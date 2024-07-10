@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
@@ -20,8 +21,13 @@ public class GameManager : MonoBehaviour
     //public TeamManager[] teammanager = new TeamManager[2];
     public GameObject[] TeamList;
 
+    
+
     private TeamManager TeamAScript;
     private TeamManager TeamBScript;
+
+    public Vector2[] Astartpos;
+    public Vector2[] Bstartpos;
 
     private BallCollide ballscript;
 
@@ -33,6 +39,15 @@ public class GameManager : MonoBehaviour
         TeamBScript = TeamList[1].GetComponent<TeamManager>();
         TeamAScript.isTurn = true;
         TeamBScript.isTurn = false;
+
+        Astartpos = new Vector2[TeamAScript.PlayerList.Length];
+        Bstartpos = new Vector2[TeamAScript.PlayerList.Length];
+
+        for (int i=0;i<TeamAScript.PlayerList.Length;i++)
+        {
+            Astartpos[i] = new Vector2(TeamAScript.PlayerList[i].transform.position.x, TeamAScript.PlayerList[i].transform.position.y);
+            Bstartpos[i] = new Vector2(TeamBScript.PlayerList[i].transform.position.x, TeamBScript.PlayerList[i].transform.position.y);
+        }
     }
 
     private void OnGUI()
@@ -43,8 +58,15 @@ public class GameManager : MonoBehaviour
         }
         else if (CurrentState == GameState.Over)
         {
-            Time.timeScale = 0f;
-            Debug.Log("HAS OVERED");
+            for (int i=0;i<TeamAScript.PlayerList.Length;i++)
+            {
+                TeamAScript.PlayerList[i].transform.position=new Vector2(Astartpos[i].x, Astartpos[i].y);
+                TeamBScript.PlayerList[i].transform.position = new Vector2(Bstartpos[i].x, Bstartpos[i].y);
+            }
+
+            //.localPosition = Vector3.MoveTowards(TeamAScript.PlayerList[i].transform.position, Astartpos[i],999);
+            //Debug.Log("HAS OVERED");
+            //Time.timeScale = 0f;
         }
         else if (CurrentState == GameState.Esc)
         {
@@ -54,31 +76,35 @@ public class GameManager : MonoBehaviour
 
     private void overgame()
     {
-        if (BallCollide.Ascare==5 || BallCollide.Bscare == 5)
+        if (CurrentState == GameState.Game)
         {
-            CurrentState = GameState.Over;
-            if (BallCollide.Ascare > BallCollide.Bscare)
+            if (BallCollide.Ascare == 5 || BallCollide.Bscare == 5)
             {
-                Debug.Log("A win");
+
+                if (BallCollide.Ascare > BallCollide.Bscare)
+                {
+                    Debug.Log("A win");
+                }
+                else
+                {
+                    Debug.Log("B win");
+                }
+                CurrentState = GameState.Over;
+                BallCollide.Ascare = BallCollide.Bscare = 0;
             }
-            else
+
+            if (TeamList[0].GetComponent<TeamManager>().NotSurvive())
             {
                 Debug.Log("B win");
+                CurrentState = GameState.Over;
+                BallCollide.Ascare = BallCollide.Bscare = 0;
             }
-            BallCollide.Ascare = BallCollide.Bscare=0;
-        }
-
-        if (TeamList[0].GetComponent<TeamManager>().NotSurvive())
-        {
-            Debug.Log("B win");
-            CurrentState = GameState.Over;
-            BallCollide.Ascare = BallCollide.Bscare = 0;
-        }
-        else if (TeamList[1].GetComponent<TeamManager>().NotSurvive())
-        {
-            Debug.Log("A win");
-            CurrentState = GameState.Over;
-            BallCollide.Ascare = BallCollide.Bscare = 0;
+            else if (TeamList[1].GetComponent<TeamManager>().NotSurvive())
+            {
+                Debug.Log("A win");
+                CurrentState = GameState.Over;
+                BallCollide.Ascare = BallCollide.Bscare = 0;
+            }
         }
     }
 

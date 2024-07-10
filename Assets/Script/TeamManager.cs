@@ -6,7 +6,7 @@ public class TeamManager : MonoBehaviour
 {
     public GameObject[] PlayerList;
     //[HideInInspector] public bool[] ChosePlayer = new bool[5];
-
+    
     public bool isTurn = false;
 
     // Start is called before the first frame update

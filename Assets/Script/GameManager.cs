@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        canAction = true;
         teamlist[0]= true;
         teamlist[1]= false;
         TeamAScript = TeamList[0].GetComponent<TeamManager>();
@@ -45,7 +44,6 @@ public class GameManager : MonoBehaviour
         TeamBScript.isTurn = false;
         ballscript = transform.Find("Ball/Circle").GetComponent<BallCollide>();
         Cam = GameObject.FindGameObjectWithTag("CamMove").GetComponent<CamMove>();
-        CurrentState = GameState.Game;
 
         Astartpos = new Vector2[TeamAScript.PlayerList.Length];
         Bstartpos = new Vector2[TeamAScript.PlayerList.Length];
@@ -68,14 +66,10 @@ public class GameManager : MonoBehaviour
         else if (CurrentState == GameState.Over)
         {
             isOver = true;
-
             TeamAScript.ResetPlayerPos();
             TeamBScript.ResetPlayerPos();
-
             ballscript.ResetBallPos();
             BallCollide.Ascare = BallCollide.Bscare = 0;
-
-            isOver = false;
             CurrentState = GameState.Game;
 
             //.localPosition = Vector3.MoveTowards(TeamAScript.PlayerList[i].transform.position, Astartpos[i],999);

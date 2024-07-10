@@ -918,7 +918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d0ff51e7505f348a929a97ccc79278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid_ball: {fileID: 0}
   prepos: {x: 0, y: 0}
 --- !u!50 &1000178738
 Rigidbody2D:
@@ -944,8 +943,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 0
-  m_CollisionDetection: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!58 &1000178739
 CircleCollider2D:

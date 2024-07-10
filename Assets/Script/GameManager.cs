@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetVel()
+    public void ResetVel()//设置所有球员速度为0
     {
         TeamAScript.ResetVel();
         TeamBScript.ResetVel();

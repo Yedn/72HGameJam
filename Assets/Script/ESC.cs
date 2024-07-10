@@ -27,13 +27,4 @@ public class ESC : MonoBehaviour
         
     }
 
-
-    public void Return()
-    {
-        //if(Input.GetKeyDown(KeyCode.Escape) && !isOnSetting)
-        Debug.Log("TimeDeFreezed");
-        OnGameSetting.SetActive(false);
-        Time.timeScale = 1f;
-        isOnSetting = true;
-    }
 }

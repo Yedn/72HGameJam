@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,7 @@ using UnityEngine;
 /// <summary>
 /// ÓÎÏ·¹ÜÀíÆ÷
 /// </summary>
-public class TracerManager
-    : MonoBehaviour
+public class TracerManager : MonoBehaviour
 {
     /// <summary>
     /// Äñ
@@ -141,6 +141,7 @@ public class TracerManager
     }
 
 
+    public event Action OutGate;
     public void CheckTurn()
     {
         bool isStandBy = bird.GetComponent<Rigidbody2D>().velocity.magnitude < 0.01f;
@@ -149,6 +150,7 @@ public class TracerManager
             GameManager.teamlist[0] = !GameManager.teamlist[0];
             GameManager.teamlist[1] = !GameManager.teamlist[1];
             moved = false;
+            OutGate?.Invoke();
         }
     }
 

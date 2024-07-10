@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class Bird : MonoBehaviour
         col = GetComponent<CircleCollider2D>();
 
         //rb.isKinematic = false;
-        Debug.Log(rb.isKinematic == true);
+        //Debug.Log(rb.isKinematic == true);
     }
 
     public void Push(Vector2 speed)
@@ -41,5 +42,22 @@ public class Bird : MonoBehaviour
     }
 
 
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("ADoor") || other.gameObject.CompareTag("BDoor"))
+        {
+            transform.parent.Find("TraceManager").GetComponent<TracerManager>().OutGate += desPlayer;
+            rb.velocity = new Vector2(0f, 0f);
+            if (GetComponent<ClickDetector>().getChosenState() == false) desPlayer();
+            //Destroy(transform.parent.gameObject);
+            //transform.parent.gameObject.SetActive(false);
+        }
+    }
+
+    private void desPlayer()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
 
 }

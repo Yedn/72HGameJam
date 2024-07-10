@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallCollide : MonoBehaviour
@@ -20,13 +20,16 @@ public class BallCollide : MonoBehaviour
         rigid_ball = this.GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject Collider = collision.gameObject;
         Rigidbody2D rigid_collider = Collider.GetComponent<Rigidbody2D>();
-        if (Collider.tag == "ADoor" || Collider.tag == "BDoor")
+        if (Collider.CompareTag("ADoor") || Collider.CompareTag("BDoor"))
         {
-            this.transform.position= prepos;
+            transform.position = prepos;
+            rigid_ball.velocity = new Vector2(0f, 0f);
+            Debug.Log("Çò½øÁË");
             if (Collider.tag == "ADoor")
             {
                 Bscare++;
@@ -38,9 +41,13 @@ public class BallCollide : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void Update()
     {
         
     }
+
+
+
 }

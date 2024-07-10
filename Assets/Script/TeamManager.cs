@@ -18,9 +18,19 @@ public class TeamManager : MonoBehaviour
         }
     }
 
+    private int playerInGame;
+
     public bool NotSurvive()
     {
-        return (PlayerList.Length == 0);
+        playerInGame = 0;
+        foreach(GameObject player in PlayerList)
+        {
+            if (player.activeSelf)
+            {
+                playerInGame++;
+            }
+        }
+        return (playerInGame == 0);
     }
 
     // Update is called once per frame

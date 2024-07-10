@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
-
-    
-
+    public int winscare = 5;
     public enum GameState
     {
         Menu,
@@ -53,6 +51,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void overgame()
+    {
+        if (BallCollide.Ascare==5 || BallCollide.Bscare == 5)
+        {
+            CurrentState = GameState.Over;
+            if (BallCollide.Ascare > BallCollide.Bscare)
+            {
+                Debug.Log("A win");
+            }
+            else
+            {
+                Debug.Log("B win");
+            }
+            BallCollide.Ascare = BallCollide.Bscare=0;
+        }
+
+        if (TeamList[0].GetComponent<TeamManager>().NotSurvive())
+        {
+            Debug.Log("B win");
+            CurrentState = GameState.Over;
+            BallCollide.Ascare = BallCollide.Bscare = 0;
+        }
+        else if (TeamList[1].GetComponent<TeamManager>().NotSurvive())
+        {
+            Debug.Log("A win");
+            CurrentState = GameState.Over;
+            BallCollide.Ascare = BallCollide.Bscare = 0;
+        }
+    }
+
     private void GameStartButton(int teamNum)
     {
         if (GUI.Button(new Rect(50,30,100,20),"START"))
@@ -87,5 +115,6 @@ public class GameManager : MonoBehaviour
         TeamAScript.isTurn = teamlist[0];
         TeamBScript.isTurn = teamlist[1];
         checkBool();
+        overgame();
     }
 }

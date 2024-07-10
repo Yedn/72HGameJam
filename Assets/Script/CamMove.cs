@@ -24,7 +24,11 @@ public class CamMove : MonoBehaviour
         {
             edgeScrolling = !edgeScrolling;
         }
-        if (edgeScrolling)	//如果打开
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            camFollowPos.x = camFollowPos.y = 0;
+        }
+        else if (edgeScrolling)	//如果打开
         {
             //屏幕左下角为坐标(0, 0)
             if (Input.mousePosition.x > Screen.width - edgeSize)//如果鼠标位置在右侧

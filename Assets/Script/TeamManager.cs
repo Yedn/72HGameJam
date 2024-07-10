@@ -84,4 +84,12 @@ public class TeamManager : MonoBehaviour
         }
     }
 
+    public void ResetVel()
+    {
+        foreach (GameObject player in PlayerList)
+        {
+            player.GetComponent<PlayerController>().ResetVel();
+        }
+    }
+
 }

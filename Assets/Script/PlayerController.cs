@@ -61,4 +61,9 @@ public class PlayerController : MonoBehaviour
         Tracer.GetComponent<TracerManager>().OutGate -= Core.GetComponent<Bird>().desPlayer;
     }
 
+    public void ResetVel()
+    {
+        Core.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+    }
+
 }

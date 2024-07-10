@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
         Over
     }
 
+    static public bool canAction = true;
+
     public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
 
     // Start is called before the first frame update
@@ -39,16 +41,19 @@ public class GameManager : MonoBehaviour
         TeamBScript = TeamList[1].GetComponent<TeamManager>();
         TeamAScript.isTurn = true;
         TeamBScript.isTurn = false;
+        ballscript = transform.Find("Ball/Circle").GetComponent<BallCollide>();
 
         Astartpos = new Vector2[TeamAScript.PlayerList.Length];
         Bstartpos = new Vector2[TeamAScript.PlayerList.Length];
 
         for (int i=0;i<TeamAScript.PlayerList.Length;i++)
         {
-            Astartpos[i] = new Vector2(TeamAScript.PlayerList[i].transform.Find("").position.x, TeamAScript.PlayerList[i].transform.position.y);
+            Astartpos[i] = new Vector2(TeamAScript.PlayerList[i].transform.position.x, TeamAScript.PlayerList[i].transform.position.y);
             Bstartpos[i] = new Vector2(TeamBScript.PlayerList[i].transform.position.x, TeamBScript.PlayerList[i].transform.position.y);
         }
     }
+
+    private bool isOver = false;
 
     private void OnGUI()
     {
@@ -58,11 +63,12 @@ public class GameManager : MonoBehaviour
         }
         else if (CurrentState == GameState.Over)
         {
-            for (int i=0;i<TeamAScript.PlayerList.Length;i++)
-            {
-                TeamAScript.PlayerList[i].transform.position=new Vector2(Astartpos[i].x, Astartpos[i].y);
-                TeamBScript.PlayerList[i].transform.position = new Vector2(Bstartpos[i].x, Bstartpos[i].y);
-            }
+            isOver = true;
+            TeamAScript.ResetPlayerPos();
+            TeamBScript.ResetPlayerPos();
+            ballscript.ResetBallPos();
+            BallCollide.Ascare = BallCollide.Bscare = 0;
+            CurrentState = GameState.Game;
 
             //.localPosition = Vector3.MoveTowards(TeamAScript.PlayerList[i].transform.position, Astartpos[i],999);
             //Debug.Log("HAS OVERED");
@@ -72,6 +78,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("ESC");
         }
+    }
+
+    public void ResetVel()
+    {
+        TeamAScript.ResetVel();
+        TeamBScript.ResetVel();
     }
 
     private void overgame()

@@ -41,7 +41,6 @@ IEnumerator LoadingCoroutime()
         if(isLoadCompleted) return;
         if(Input.anyKey)
         {
-            Debug.Log("Enable transform");
             asyncOperation.allowSceneActivation = true;
         }
     } 

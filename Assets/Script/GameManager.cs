@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         TeamAScript.ResetVel();
         TeamBScript.ResetVel();
     }
-
+    public GameObject EndUI;
     private void overgame()
     {
         if (CurrentState == GameState.Game)
@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
                     GameResult.transform.Find("Bwin").gameObject.SetActive(true);
                     GameResult.transform.Find("Alose").gameObject.SetActive(true);
                 }
+                EndUI.SetActive(true);
                 CurrentState = GameState.Over;
                 BallCollide.Ascare = BallCollide.Bscare = 0;
             }
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
             {
                 GameResult.transform.Find("Bwin").gameObject.SetActive(true);
                 GameResult.transform.Find("Alose").gameObject.SetActive(true);
+                EndUI.SetActive(true);
                 CurrentState = GameState.Over;
                 BallCollide.Ascare = BallCollide.Bscare = 0;
             }
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
             {
                 GameResult.transform.Find("Awin").gameObject.SetActive(true);
                 GameResult.transform.Find("Blose").gameObject.SetActive(true);
+                EndUI.SetActive(true);
                 CurrentState = GameState.Over;
                 BallCollide.Ascare = BallCollide.Bscare = 0;
             }

@@ -26,12 +26,14 @@ public class Bird : MonoBehaviour
     public void Push(Vector2 speed)
     {
         rb.AddForce(speed, ForceMode2D.Impulse);
+        Debug.Log("forece:" + speed.ToString());
     }
 
 
     public void ActivateRb()
     {
         rb.isKinematic = false;
+        
     }
 
     public void DesActivateRb()
@@ -39,6 +41,7 @@ public class Bird : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0f;
         rb.isKinematic = true;
+        //Debug.Log(rb.isKinematic);
     }
 
 

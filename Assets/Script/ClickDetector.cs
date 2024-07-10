@@ -52,11 +52,16 @@ public class ClickDetector : MonoBehaviour
             }
             else
             {
-                //Debug.Log("你没点击了物体: " + hit.collider.name + transform.parent.name);
+                Debug.Log("你没点击了物体: ");
                 eff = transform.Find("NormalChosenEffect").gameObject;
                 isChosen = false;
                 eff.SetActive(false);
             }
+        }
+        else if ((Input.GetKeyDown(KeyCode.T)))
+        {
+            Debug.Log("canUnSelect: " + canUnSelect);
+            Debug.Log("GameManager.canAction: " + GameManager.canAction);
         }
     }
 

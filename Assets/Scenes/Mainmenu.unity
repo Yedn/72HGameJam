@@ -2140,7 +2140,7 @@ GameObject:
   - component: {fileID: 1645927536}
   - component: {fileID: 1645927535}
   m_Layer: 0
-  m_Name: GamManager
+  m_Name: VolumeCotroller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

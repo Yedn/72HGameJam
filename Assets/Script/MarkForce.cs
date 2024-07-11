@@ -16,6 +16,6 @@ public class MarkForce : MonoBehaviour
     void Update()
     {
         int finalnum = MaxForce.randomforce;
-        showtext.text=finalnum.ToString();
+        showtext.text="最大力度：" +finalnum.ToString();
     }
 }

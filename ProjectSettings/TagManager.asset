@@ -56,6 +56,9 @@ TagManager:
   - name: ForeGround
     uniqueID: 839462999
     locked: 0
+  - name: NewAds
+    uniqueID: 3405302193
+    locked: 0
   - name: teach
     uniqueID: 2851425217
     locked: 0

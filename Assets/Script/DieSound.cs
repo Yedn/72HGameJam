@@ -5,11 +5,14 @@ using UnityEngine;
 public class DieSound : MonoBehaviour
 {
     public static AudioClip died;
+    public static AudioClip goal;
+
     public static AudioSource aSou;
     // Start is called before the first frame update
     void Start()
     {
         died = Resources.Load<AudioClip>("DDD");
+        goal = Resources.Load<AudioClip>("goal");
         aSou = GetComponent<AudioSource>();
     }
 
@@ -22,6 +25,11 @@ public class DieSound : MonoBehaviour
     public static void PlayerInGate()
     {
         aSou.PlayOneShot(died);
+    }
+
+    public static void BallInGate()
+    {
+        aSou.PlayOneShot(goal);
     }
 
 }

@@ -27,6 +27,7 @@ public class BallCollide : MonoBehaviour
         Rigidbody2D rigid_collider = Collider.GetComponent<Rigidbody2D>();
         if (Collider.CompareTag("ADoor") || Collider.CompareTag("BDoor"))
         {
+            DieSound.BallInGate();
             ResetBallPos();
             rigid_ball.velocity = new Vector2(0f, 0f);
             isgoal = true;

@@ -7,11 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class VolumnControler : MonoBehaviour
 {
-
+    public static bool isLoad = false;
     // Start is called before the first frame update
     void Start()
     {
+      if(!isLoad)
+      {
+        isLoad = true;
         DontDestroyOnLoad(gameObject);
+      }
+      else  {
+        Destroy(gameObject);
+        return;
+        }
     }
 
     // Update is called once per frame
@@ -41,6 +49,9 @@ public class VolumnControler : MonoBehaviour
         GameObject BGM = GameObject.Find("BGM").transform.gameObject;
         BGM.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("audioVolume");
       }
+
+
     }
 
+   
 }

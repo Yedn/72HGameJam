@@ -18,7 +18,6 @@ public class Bird : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
-
         //rb.isKinematic = false;
         //Debug.Log(rb.isKinematic == true);
     }
@@ -47,6 +46,7 @@ public class Bird : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ADoor") || other.gameObject.CompareTag("BDoor"))
         {
+            DieSound.PlayerInGate();
             transform.parent.Find("TraceManager").GetComponent<TracerManager>().OutGate += desPlayer;
             rb.velocity = new Vector2(0f, 0f);
             if (GetComponent<ClickDetector>().getChosenState() == false) desPlayer();

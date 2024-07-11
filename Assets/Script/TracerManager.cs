@@ -159,6 +159,7 @@ public class TracerManager : MonoBehaviour
         {
             GameManager.teamlist[0] = !GameManager.teamlist[0];
             GameManager.teamlist[1] = !GameManager.teamlist[1];
+            MaxForce.randomforce = 0;
             bird.GetComponent<ClickDetector>().SetcanUnSelect(true);
             GameManager.canAction = true;
             moved = false;

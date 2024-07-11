@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaxForce : MonoBehaviour
 {
-    static public int randomforce = 3;
+    static public int randomforce = 0;
     // Start is called before the first frame update
     void Start()
     {

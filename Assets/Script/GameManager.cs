@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     }
 
     static public bool canAction = true;
+    static public bool isRelease = true;
+
     public GameObject GameResult;
     public GameState CurrentState = GameState.Game;//之后测试要改回Menu，现在没有初始窗口
 
@@ -172,6 +174,12 @@ public class GameManager : MonoBehaviour
             GameResult.transform.Find("goal").gameObject.SetActive(true);
             BallCollide.isgoal = false;
             StartCoroutine(UnShowGoal());
+        }
+
+        if (isRelease)
+        {
+            Cam.ResetPos();
+            isRelease = false;
         }
     }
 

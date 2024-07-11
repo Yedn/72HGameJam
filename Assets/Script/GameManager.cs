@@ -193,4 +193,12 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Over;
         Time.timeScale = 1f;
     }
+
+    public void HideResurt()
+    {
+        GameResult.transform.Find("Awin").gameObject.SetActive(false);
+        GameResult.transform.Find("Blose").gameObject.SetActive(false);
+        GameResult.transform.Find("Bwin").gameObject.SetActive(false);
+        GameResult.transform.Find("Alose").gameObject.SetActive(false);
+    }
 }

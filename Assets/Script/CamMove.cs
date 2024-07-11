@@ -20,10 +20,10 @@ public class CamMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))	//移动开关
-        {
-            edgeScrolling = !edgeScrolling;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))	//移动开关
+        //{
+        //    edgeScrolling = !edgeScrolling;
+        //}
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
             camFollowPos.x = camFollowPos.y = 0;

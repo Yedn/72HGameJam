@@ -22,16 +22,37 @@ IEnumerator LoadingCoroutime()
 
     asyncOperation.allowSceneActivation = false;
 
-    while(loadingUI.FillAmount<1)
+    while(loadingUI.FillAmount<0.3)
     {
-        loadingtext.text = "哦哈呦";
+        loadingtext.text = "“我将，点燃球场！”.";
 
         loadingUI.targetFillAmount = asyncOperation.progress+0.1f;
 
         yield return null;
     }
+    while(loadingUI.FillAmount<0.6 && loadingUI.FillAmount>0.3)
+    {
+        loadingtext.text = "“国足会赢吗？”..";
+
+        loadingUI.targetFillAmount = asyncOperation.progress+0.1f;
+
+        yield return null;
+    }
+    while(loadingUI.FillAmount<1 && loadingUI.FillAmount>0.6)
+    {
+        loadingtext.text = "“会赢的”\n“等通知”...";
+
+        loadingUI.targetFillAmount = asyncOperation.progress+0.1f;
+
+        yield return null;
+    }
+
+
+
+
+
     loadingUI.FillAmount = 1;
-    loadingtext.text = "点击以继续";
+    loadingtext.text = "球赛，启动！\n (点击以继续)";
     isLoadCompleted = false;
 
 }

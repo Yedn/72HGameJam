@@ -16,6 +16,6 @@ public class BteamScare : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Bteam.text = BallCollide.Bscare.ToString();
+        Bteam.text = BallCollide.Bscare.ToString()+"/5";
     }
 }

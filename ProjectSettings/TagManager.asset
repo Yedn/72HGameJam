@@ -56,6 +56,9 @@ TagManager:
   - name: ForeGround
     uniqueID: 839462999
     locked: 0
+  - name: teach
+    uniqueID: 2851425217
+    locked: 0
   - name: Player
     uniqueID: 949123469
     locked: 0

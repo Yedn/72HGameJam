@@ -16,6 +16,6 @@ public class AteamScare : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ateam.text = BallCollide.Ascare.ToString();
+        Ateam.text = BallCollide.Ascare.ToString()+"/5";
     }
 }

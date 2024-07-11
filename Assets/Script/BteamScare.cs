@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MaxForce : MonoBehaviour
+public class BteamScare : MonoBehaviour
 {
-    static public int randomforce = 3;
+
+    private Text Bteam;
     // Start is called before the first frame update
     void Start()
     {
+        Bteam = GetComponent<Text>();
+    }
 
-    }
-    public void maxForce()
-    {
-        randomforce = Random.Range(3, 7);
-        Debug.Log("MaxForce = " + randomforce);
-    }
     // Update is called once per frame
     void Update()
     {
-
+        Bteam.text = BallCollide.Bscare.ToString();
     }
 }

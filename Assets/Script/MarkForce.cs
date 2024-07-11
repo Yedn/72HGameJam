@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
-public class MaxForce : MonoBehaviour
+public class MarkForce : MonoBehaviour
 {
-    static public int randomforce = 3;
+
+    private Text showtext;
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-    public void maxForce()
-    {
-        randomforce = Random.Range(3, 7);
-        Debug.Log("MaxForce = " + randomforce);
+        showtext = GetComponent<Text>();
     }
     // Update is called once per frame
     void Update()
     {
-
+        int finalnum = MaxForce.randomforce;
+        showtext.text=finalnum.ToString();
     }
 }

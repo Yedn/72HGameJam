@@ -777,7 +777,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1292936857}
+      - m_Target: {fileID: 1710402282}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1655,7 +1655,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1292936857}
+      - m_Target: {fileID: 1710402282}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1759,7 +1759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1292936858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,8 +2158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51342ac7210d8904ca5427994d6950dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMAudio: {fileID: 1390163759}
-  volumnslider: {fileID: 92708737}
 --- !u!4 &1645927536
 Transform:
   m_ObjectHideFlags: 0
@@ -2192,7 +2190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1710402283
 RectTransform:
   m_ObjectHideFlags: 0
